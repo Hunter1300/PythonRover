@@ -1,11 +1,11 @@
 import time
 import os
 import socket
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 # Set up GPIO
-#GPIO.setmode(GPIO.BCM)
-#GPIO.setup(18, GPIO.OUT)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(18, GPIO.OUT)
 
 #Set up the socket:
 defaultPort = 3301
@@ -27,12 +27,12 @@ def listenForMsg():
 			msg = msg.decode('utf-8')
 			# If message = 'w' turn led on.
 			if msg == "w":
-				#GPIO.output(18, GPIO.HIGH)
+				GPIO.output(18, GPIO.HIGH)
 				print(msg)
 			# If message != 'w' turn led off.
 			else:
 				print(msg)
-				#GPIO.output(18, GPIO.LOW)
+				GPIO.output(18, GPIO.LOW)
 		except Exception as e:
 			print(e)
 			pass
