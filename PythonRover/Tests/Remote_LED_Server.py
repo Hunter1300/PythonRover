@@ -25,7 +25,22 @@ def listenForKeyPress():
 				msg = "w"
 				print(msg)
 				clientsocket.send(bytes(msg, 'utf-8'))
-			# Send a message when 'w' is not being pressed.
+			while keyboard.is_pressed('s'):
+				# Send a message to the server when key 's' is pressed.
+				msg = 's'
+				print(msg)
+				clientsocket.send(bytes(msg, 'utf-8'))
+			while keyboard.is_pressed('d'):
+				# Send a message to the server when key 'd' is pressed.
+				msg = 'd'
+				print(msg)
+				clientsocket.send(bytes(msg, 'utf-8'))
+			while keyboard.is_pressed('a'):
+				# Send a message to the server when key 'a' is pressed.
+				msg = 's'
+				print(msg)
+				clientsocket.send(bytes(msg, 'utf-8'))
+			# Send a message when no key is being pressed.
 			msg = "none"
 			print(msg)
 			clientsocket.send(bytes(msg, 'utf-8'))
