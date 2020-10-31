@@ -9,7 +9,7 @@ GPIO.setup(18, GPIO.OUT)
 
 #Set up the socket:
 defaultPort = 3301
-defaultIP = 192.168.0.108
+defaultIP = "192.168.0.108"
 host = socket.gethostname()
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind(defaultIP, defaultPort)

@@ -5,12 +5,12 @@ import keyboard
 
 # Here we setup a socket.
 defaultPort = 3301
-defaultIP = 192.168.0.108
+defaultIP = "192.168.0.108"
 host = socket.gethostname()
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Here we conect to the server. AKA Raspberry Pi.
-connect(defaultIP, defaultPort)
+s.connect((defaultIP, defaultPort))
 
 # Define a function.
 def listenForKeyPress():
