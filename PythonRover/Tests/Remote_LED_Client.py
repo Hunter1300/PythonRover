@@ -45,6 +45,9 @@ def listenForMsg():
 			else:
 				print(msg)
 				GPIO.output(18, GPIO.LOW)
+				GPIO.output(23, GPIO.LOW)
+				GPIO.output(24, GPIO.LOW)
+				GPIO.output(25, GPIO.LOW)
 		except Exception as e:
 			print(e)
 			pass
