@@ -1,39 +1,37 @@
 import time
 import os
 import socket
-import RPi.GPIO as GPIO
+import keyboard
 
-# Set up GPIO
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(18, GPIO.OUT)
-
-#Set up the socket:
+# Here we setup a socket.
 defaultPort = 3301
-defaultIP = "192.168.0.108"
+defaultIP = "192.168.0.103"
 host = socket.gethostname()
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind(defaultIP, defaultPort)
-s.listen(5)
+s.bind((defaultIP, defaultPort))
+s.listen(1)
 
 # Accept incoming connection...
 clientsocket, address = s.accept()
 print(f"Connection from {address} has been established.")
 
-# Define a function to listen for messages:
-def listenForMsg():
-	# While code is running:
+# Define a function.
+def listenForKeyPress():
+	# While the program is running:
 	while True:
 		try:
-			# Recive messages.
-			msg = s.recv(1024)
-			# Decode message.
-			msg = msg.decode('utf-8')
-			# If message = 'w' turn led on.
-			if msg == "w":
-				GPIO.output(18, GPIO.HIGH)
-			# If message != 'w' turn led off.
-			else:
-				GPIO.output(18, GPIO.LOW)
+			while keyboard.is_pressed('w'):
+				# Send a message to the server when key 'w' is pressed.
+				msg = "w"
+				print(msg)
+				clientsocket.send(bytes(msg, 'utf-8'))
+			# Send a message when 'w' is not being pressed.
+			msg = "none"
+			print(msg)
+			clientsocket.send(bytes(msg, 'utf-8'))
 		except Exception as e:
 			print(e)
-			pass
+			break
+
+# Start our function.
+listenForKeyPress()
